@@ -2,4 +2,33 @@
     <string name="app_name">SunnyWeather</string>
     <string name="enter_address">Enter address</string>
     <string name="can_not_find_location">No location could be found</string>
+    <string name="separator" translatable="false">|</string>
+    <string name="forecast">Forecast</string>
+    <string name="life_index">Life index</string>
+    <string name="cold">Cold</string>
+    <string name="dressing">Dressing</string>
+    <string name="real_time_uv">Real time ultraviolet rays</string>
+    <string name="car_wash">Car wash</string>
+    <string name="clear">Clear</string>
+    <string name="partly_cloudy">Partly cloudy</string>
+    <string name="cloudy">Cloudy</string>
+    <string name="wind">Wind</string>
+    <string name="light_rain">Light rain</string>
+    <string name="moderate_rain">Moderate rain</string>
+    <string name="heavy_rain">Heavy rain</string>
+    <string name="storm_rain">Storm rain</string>
+    <string name="thunder_shower">Thunder shower</string>
+    <string name="sleet">Sleet</string>
+    <string name="light_snow">Light snow</string>
+    <string name="moderate_snow">Moderate snow</string>
+    <string name="heavy_snow">Heavy snow</string>
+    <string name="storm_snow">Storm snow</string>
+    <string name="hail">Hail</string>
+    <string name="light_haze">Light haze</string>
+    <string name="moderate_haze">Moderate haze</string>
+    <string name="heavy_haze">Heavy haze</string>
+    <string name="fog">Fog</string>
+    <string name="dust">Dust</string>
+    <string name="air_index">Air index</string>
+    <string name="failed_to_get_weather_info">Failed to get weather information successfully</string>
 </resources>

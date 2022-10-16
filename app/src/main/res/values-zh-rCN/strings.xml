@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">天气</string>
+    <string name="enter_address">输入地址</string>
+    <string name="can_not_find_location">未能查询到任何地点</string>
+    <string name="forecast">预报</string>
+    <string name="life_index">生活指数</string>
+    <string name="cold">感冒</string>
+    <string name="dressing">穿衣</string>
+    <string name="real_time_uv">实时紫外线</string>
+    <string name="car_wash">洗车</string>
+    <string name="clear">晴</string>
+    <string name="partly_cloudy">多云</string>
+    <string name="cloudy">阴</string>
+    <string name="wind">大风</string>
+    <string name="light_rain">小雨</string>
+    <string name="moderate_rain">中雨</string>
+    <string name="heavy_rain">大雨</string>
+    <string name="storm_rain">暴雨</string>
+    <string name="thunder_shower">雷阵雨</string>
+    <string name="sleet">雨夹雪</string>
+    <string name="light_snow">小雪</string>
+    <string name="moderate_snow">中雪</string>
+    <string name="heavy_snow">大雪</string>
+    <string name="storm_snow">暴雪</string>
+    <string name="hail">冰雹</string>
+    <string name="light_haze">轻度雾霾</string>
+    <string name="moderate_haze">中度雾霾</string>
+    <string name="heavy_haze">重度雾霾</string>
+    <string name="fog">雾</string>
+    <string name="dust">浮尘</string>
+    <string name="air_index">空气指数</string>
+    <string name="failed_to_get_weather_info">无法成功获取天气信息</string>
+</resources>
