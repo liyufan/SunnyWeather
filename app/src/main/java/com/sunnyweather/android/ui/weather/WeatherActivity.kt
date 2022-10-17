@@ -1,14 +1,19 @@
 package com.sunnyweather.android.ui.weather
 
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.core.view.WindowCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.sunnyweather.android.R
 import com.sunnyweather.android.databinding.ActivityWeatherBinding
@@ -24,11 +29,11 @@ import java.util.*
 
 class WeatherActivity : AppCompatActivity() {
 
-    private lateinit var activityWeatherBinding: ActivityWeatherBinding
+    lateinit var activityWeatherBinding: ActivityWeatherBinding
     private lateinit var nowBinding: NowBinding
     private lateinit var forecastBinding: ForecastBinding
     private lateinit var lifeIndexBinding: LifeIndexBinding
-    private val viewModel by lazy { ViewModelProvider(this)[WeatherViewModel::class.java] }
+    val viewModel by lazy { ViewModelProvider(this)[WeatherViewModel::class.java] }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,8 +62,35 @@ class WeatherActivity : AppCompatActivity() {
                 getString(R.string.failed_to_get_weather_info).showToast()
                 result.exceptionOrNull()?.printStackTrace()
             }
+            activityWeatherBinding.swipeRefresh.isRefreshing = false
         }
+        activityWeatherBinding.swipeRefresh.setColorSchemeResources(R.color.purple_500)
+        refreshWeather()
+        activityWeatherBinding.swipeRefresh.setOnRefreshListener {
+            refreshWeather()
+        }
+        nowBinding.navBtn.setOnClickListener {
+            activityWeatherBinding.drawerLayout.openDrawer(GravityCompat.START)
+        }
+        activityWeatherBinding.drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
+            override fun onDrawerStateChanged(newState: Int) {}
+
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
+
+            override fun onDrawerOpened(drawerView: View) {}
+
+            override fun onDrawerClosed(drawerView: View) {
+                val manager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                manager.hideSoftInputFromWindow(
+                    drawerView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS
+                )
+            }
+        })
+    }
+
+    fun refreshWeather() {
         viewModel.refreshWeather(viewModel.locationLng, viewModel.locationLat)
+        activityWeatherBinding.swipeRefresh.isRefreshing = true
     }
 
     private fun showWeatherInfo(weather: Weather) {
@@ -99,4 +131,18 @@ class WeatherActivity : AppCompatActivity() {
         lifeIndexBinding.carWashingText.text = lifeIndex.carWashing[0].desc
         activityWeatherBinding.weatherLayout.visibility = View.VISIBLE
     }
+
+    companion object {
+        fun actionStart(
+            context: Context, locationLng: String, locationLat: String, placeName: String
+        ) {
+            val intent = Intent(context, WeatherActivity::class.java).apply {
+                putExtra("location_lng", locationLng)
+                putExtra("location_lat", locationLat)
+                putExtra("place_name", placeName)
+            }
+            context.startActivity(intent)
+        }
+    }
+
 }
