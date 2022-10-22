@@ -5,21 +5,15 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.WindowCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.sunnyweather.android.R
-import com.sunnyweather.android.databinding.ActivityWeatherBinding
-import com.sunnyweather.android.databinding.ForecastBinding
-import com.sunnyweather.android.databinding.LifeIndexBinding
-import com.sunnyweather.android.databinding.NowBinding
+import com.sunnyweather.android.databinding.*
 import com.sunnyweather.android.logic.model.Weather
 import com.sunnyweather.android.logic.model.getSky
 import com.sunnyweather.android.util.showToast
@@ -109,12 +103,12 @@ class WeatherActivity : AppCompatActivity() {
         for (i in 0 until days) {
             val skycon = daily.skycon[i]
             val temperature = daily.temperature[i]
-            val view = LayoutInflater.from(this)
-                .inflate(R.layout.forecast_item, forecastBinding.forecastLayout, false)
-            val dateInfo = view.findViewById(R.id.dateInfo) as TextView
-            val skyIcon = view.findViewById(R.id.skyIcon) as ImageView
-            val skyInfo = view.findViewById(R.id.skyInfo) as TextView
-            val temperatureInfo = view.findViewById(R.id.temperatureInfo) as TextView
+            val binding =
+                ForecastItemBinding.inflate(layoutInflater, forecastBinding.forecastLayout, false)
+            val dateInfo = binding.dateInfo
+            val skyIcon = binding.skyIcon
+            val skyInfo = binding.skyInfo
+            val temperatureInfo = binding.temperatureInfo
             val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             dateInfo.text = simpleDateFormat.format(skycon.date)
             val sky = getSky(skycon.value)
@@ -122,7 +116,7 @@ class WeatherActivity : AppCompatActivity() {
             skyInfo.text = sky.info
             val tempText = "${temperature.min.toInt()} ~ ${temperature.max.toInt()} ℃"
             temperatureInfo.text = tempText
-            forecastBinding.forecastLayout.addView(view)
+            forecastBinding.forecastLayout.addView(binding.root)
         }
         val lifeIndex = daily.lifeIndex
         lifeIndexBinding.coldRiskText.text = lifeIndex.coldRisk[0].desc
