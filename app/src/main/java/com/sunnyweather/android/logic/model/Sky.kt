@@ -5,7 +5,6 @@ import com.sunnyweather.android.SunnyWeatherApplication
 
 class Sky(val info: String, val icon: Int, val bg: Int)
 
-
 private val key = mapOf(
     "CLEAR_DAY" to Sky(
         SunnyWeatherApplication.context.getString(R.string.clear),

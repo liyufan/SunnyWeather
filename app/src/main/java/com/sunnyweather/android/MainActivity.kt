@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.sunnyweather.android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,4 +14,5 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
     }
+
 }

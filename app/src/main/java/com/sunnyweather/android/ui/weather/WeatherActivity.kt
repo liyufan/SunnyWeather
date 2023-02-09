@@ -1,6 +1,5 @@
 package com.sunnyweather.android.ui.weather
 
-
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -19,7 +18,6 @@ import com.sunnyweather.android.logic.model.getSky
 import com.sunnyweather.android.util.showToast
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 class WeatherActivity : AppCompatActivity() {
 
